@@ -78,7 +78,10 @@ class HomeView extends StatelessWidget {
                   height: sizeConf.width(3),
                 ),
                 GestureDetector(
-                  child: const CreateAccountButton(text: 'Create account'),
+                  child: const CreateAccountButton(
+                    text: 'Create account',
+                    color: Colors.black,
+                  ),
                   onTap: () => onCreateAccountTap(context),
                 ),
                 SizedBox(
