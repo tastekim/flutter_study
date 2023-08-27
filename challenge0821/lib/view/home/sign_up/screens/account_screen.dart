@@ -1,10 +1,11 @@
 import 'package:challenge0821/util/size.dart';
-import 'package:challenge0821/view/home/widgets/create_account_button.dart';
-import 'package:challenge0821/view/policy/policy_view.dart';
+import 'package:challenge0821/view/home/sign_up/screens/code_screen.dart';
+import 'package:challenge0821/view/home/widgets/big_button.dart';
+import 'package:challenge0821/view/home/sign_up/screens/policy_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/sign_up_textformfield.dart';
+import '../widgets/sign_up_textformfield.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -23,6 +24,10 @@ class _SignupViewState extends State<SignupView> {
   bool isBirthDefined = false;
   bool isPolicyDefined = false;
 
+  String adress = '';
+  String name = '';
+  String birth = '';
+
   @override
   void initState() {
     super.initState();
@@ -36,11 +41,21 @@ class _SignupViewState extends State<SignupView> {
     super.dispose();
   }
 
-  void _onNextTap(Function changeState) {
+  void _onPolicyTap(Function changeState) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => PolicyView(
           onChangeState: changeState,
+        ),
+      ),
+    );
+  }
+
+  void _onNextTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SentCodeScreen(
+          adress: adress,
         ),
       ),
     );
@@ -58,21 +73,26 @@ class _SignupViewState extends State<SignupView> {
     });
   }
 
-  void onChangeNameDefined(bool value) {
+  void onChangeNameDefined(bool value, String input) {
     setState(() {
       isNameDefined = value;
+      name = input;
     });
   }
 
-  void onChangeConectDefined(bool value) {
+  void onChangeAdressDefined(bool value, String input) {
     setState(() {
       isContectDefined = value;
+      adress = input;
     });
   }
 
   void _setTextFieldDate(DateTime date) {
-    final textDate = date.toString().split(" ").first;
-    textEditingController.value = TextEditingValue(text: textDate);
+    setState(() {
+      final textDate = date.toString().split(" ").first;
+      textEditingController.value = TextEditingValue(text: textDate);
+      birth = textDate;
+    });
   }
 
   void _showDialog(Widget child) {
@@ -121,7 +141,7 @@ class _SignupViewState extends State<SignupView> {
             'Cancel',
             style: TextStyle(
               color: Colors.black87,
-              fontSize: sizeConf.width(16),
+              fontSize: sizeConf.width(14),
             ),
           ),
         ),
@@ -129,8 +149,10 @@ class _SignupViewState extends State<SignupView> {
       extendBody: true,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: sizeConf.width(32),
+          padding: EdgeInsets.only(
+            left: sizeConf.width(32),
+            right: sizeConf.width(32),
+            bottom: sizeConf.width(10),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +180,7 @@ class _SignupViewState extends State<SignupView> {
               ),
               SignUpTextFormField(
                 text: 'Phone number or email address',
-                changeState: onChangeConectDefined,
+                changeState: onChangeAdressDefined,
               ),
               SizedBox(
                 height: sizeConf.width(20),
@@ -207,10 +229,11 @@ class _SignupViewState extends State<SignupView> {
                   );
                 },
               ),
-              Expanded(
+              const Expanded(
+                flex: 1,
                 child: SizedBox(
-                  height: sizeConf.width(300),
-                ),
+                    // height: sizeConf.width(300),
+                    ),
               ),
               if (!isPolicyDefined)
                 Row(
@@ -225,13 +248,13 @@ class _SignupViewState extends State<SignupView> {
                         if (isBirthDefined &&
                             isContectDefined &&
                             isNameDefined) {
-                          _onNextTap(onChangePolicyDefined);
+                          _onPolicyTap(onChangePolicyDefined);
                         }
                         return;
                       },
                       child: Container(
                         margin: EdgeInsets.only(
-                          bottom: sizeConf.width(20),
+                          bottom: sizeConf.width(10),
                         ),
                         alignment: Alignment.center,
                         width: sizeConf.width(80),
@@ -260,75 +283,79 @@ class _SignupViewState extends State<SignupView> {
                   ],
                 ),
               if (isPolicyDefined)
-                Expanded(
-                  child: SizedBox(
-                    height: sizeConf.width(300),
-                    child: Column(
-                      children: [
-                        Flexible(
-                          child: RichText(
-                            text: TextSpan(
-                              text: 'By signing up, you agree to the ',
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: sizeConf.width(13),
-                              ),
-                              children: const [
-                                TextSpan(
-                                  text: 'Terms of Service',
-                                  style: TextStyle(
-                                    color: Color(0xff0bacf4),
-                                  ),
-                                ),
-                                TextSpan(text: ' and '),
-                                TextSpan(
-                                  text: 'Privacy Policy',
-                                  style: TextStyle(
-                                    color: Color(0xff0bacf4),
-                                  ),
-                                ),
-                                TextSpan(text: ', inculing '),
-                                TextSpan(text: 'and '),
-                                TextSpan(
-                                  text: 'Cookie Use.',
-                                  style: TextStyle(
-                                    color: Color(0xff0bacf4),
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads.',
-                                ),
-                                TextSpan(
-                                  text: 'Learn more',
-                                  style: TextStyle(
-                                    color: Color(0xff0bacf4),
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      'Others will be able to find you by email or phone number, when provided, unless you choose otherwise ',
-                                ),
-                                TextSpan(
-                                  text: 'here',
-                                  style: TextStyle(
-                                    color: Color(0xff0bacf4),
-                                  ),
-                                ),
-                              ],
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      child: Flexible(
+                        child: RichText(
+                          maxLines: 10,
+                          text: TextSpan(
+                            text: 'By signing up, you agree to the ',
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: sizeConf.width(13),
                             ),
+                            children: const [
+                              TextSpan(
+                                text: 'Terms of Service',
+                                style: TextStyle(
+                                  color: Color(0xff0bacf4),
+                                ),
+                              ),
+                              TextSpan(text: ' and '),
+                              TextSpan(
+                                text: 'Privacy Policy',
+                                style: TextStyle(
+                                  color: Color(0xff0bacf4),
+                                ),
+                              ),
+                              TextSpan(text: ', inculing '),
+                              TextSpan(text: 'and '),
+                              TextSpan(
+                                text: 'Cookie Use.',
+                                style: TextStyle(
+                                  color: Color(0xff0bacf4),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    'Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads.',
+                              ),
+                              TextSpan(
+                                text: 'Learn more',
+                                style: TextStyle(
+                                  color: Color(0xff0bacf4),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    'Others will be able to find you by email or phone number, when provided, unless you choose otherwise ',
+                              ),
+                              TextSpan(
+                                text: 'here',
+                                style: TextStyle(
+                                  color: Color(0xff0bacf4),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height: sizeConf.width(10),
-                        ),
-                        const CreateAccountButton(
-                          text: 'Sign up',
-                          color: Color(0xff0bacf4),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      height: sizeConf.width(10),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _onNextTap();
+                      },
+                      child: const CreateAccountButton(
+                        text: 'Sign up',
+                        color: Color(0xff0bacf4),
+                      ),
+                    ),
+                  ],
                 ),
             ],
           ),

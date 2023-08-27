@@ -1,8 +1,8 @@
 import 'package:challenge0821/util/size.dart';
-import 'package:challenge0821/view/home/widgets/create_account_button.dart';
-import 'package:challenge0821/view/sign_up/sign_up_view.dart';
+import 'package:challenge0821/view/home/widgets/big_button.dart';
 import 'package:flutter/material.dart';
 
+import 'sign_up/screens/account_screen.dart';
 import 'widgets/social_login_button.dart';
 
 class HomeView extends StatelessWidget {
@@ -30,13 +30,16 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: sizeConf.width(32),
+            padding: EdgeInsets.only(
+              left: sizeConf.width(32),
+              right: sizeConf.width(32),
+              bottom: sizeConf.width(10),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: sizeConf.width(126),
+                  height: sizeConf.width(130),
                 ),
                 Text(
                   "See what's happening\nin the world right now.",
@@ -47,7 +50,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: sizeConf.width(126),
+                  height: sizeConf.width(130),
                 ),
                 const HomeButton(
                   text: 'Continue with Google',
@@ -85,7 +88,7 @@ class HomeView extends StatelessWidget {
                   onTap: () => onCreateAccountTap(context),
                 ),
                 SizedBox(
-                  height: sizeConf.width(20),
+                  height: sizeConf.width(16),
                 ),
                 Flexible(
                   child: RichText(
@@ -121,19 +124,22 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: sizeConf.width(50),
+                const Expanded(
+                  child: SizedBox(
+                      // height: sizeConf.width(34),
+                      ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: 'Have an account already? ',
                         style: TextStyle(
                           color: Colors.black87,
+                          fontSize: sizeConf.width(12),
                         ),
-                        children: [
+                        children: const [
                           TextSpan(
                             text: 'Log in',
                             style: TextStyle(

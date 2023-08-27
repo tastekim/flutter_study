@@ -2,14 +2,14 @@ import 'package:challenge0821/util/size.dart';
 import 'package:flutter/material.dart';
 
 class SignUpTextFormField extends StatefulWidget {
-  SignUpTextFormField({
+  const SignUpTextFormField({
     super.key,
     required this.text,
     required this.changeState,
   });
 
   final String text;
-  Function changeState;
+  final Function changeState;
 
   @override
   State<SignUpTextFormField> createState() => _SignUpTextFormFieldState();
@@ -25,15 +25,15 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
     });
   }
 
-  void onChangeValidate(bool isDefined) {
+  void onChangeValidate(bool isDefined, String value) {
     setState(() {
       _isDefined = isDefined;
       if (widget.text == 'Name') {
-        widget.changeState(isDefined);
+        widget.changeState(isDefined, value);
         setState(() {});
       }
       if (widget.text == 'Phone number or email address') {
-        widget.changeState(isDefined);
+        widget.changeState(isDefined, value);
         setState(() {});
       }
     });
@@ -49,11 +49,10 @@ class _SignUpTextFormFieldState extends State<SignUpTextFormField> {
         setNewValue(value);
         textEditingController.selection = TextSelection.fromPosition(
             TextPosition(offset: textEditingController.text.length));
-        print(value);
         if (value == '') {
-          onChangeValidate(false);
+          onChangeValidate(false, value);
         } else {
-          onChangeValidate(true);
+          onChangeValidate(true, value);
         }
       },
       validator: (value) {

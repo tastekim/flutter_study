@@ -1,5 +1,5 @@
 import 'package:challenge0821/util/size.dart';
-import 'package:challenge0821/view/home/widgets/create_account_button.dart';
+import 'package:challenge0821/view/home/widgets/big_button.dart';
 import 'package:flutter/material.dart';
 
 class PolicyView extends StatefulWidget {
@@ -34,15 +34,17 @@ class _PolicyViewState extends State<PolicyView> {
             'Cancel',
             style: TextStyle(
               color: Colors.black87,
-              fontSize: sizeConf.width(16),
+              fontSize: sizeConf.width(14),
             ),
           ),
         ),
       ),
       extendBody: true,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: sizeConf.width(32),
+        padding: EdgeInsets.only(
+          left: sizeConf.width(32),
+          right: sizeConf.width(32),
+          bottom: sizeConf.width(10),
         ),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
@@ -158,8 +160,10 @@ class _PolicyViewState extends State<PolicyView> {
                 ),
               ),
             ),
-            SizedBox(
-              height: sizeConf.width(220),
+            Expanded(
+              child: SizedBox(
+                height: sizeConf.width(220),
+              ),
             ),
             GestureDetector(
               onTap: () {
