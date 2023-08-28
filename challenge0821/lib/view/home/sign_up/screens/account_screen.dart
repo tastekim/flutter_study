@@ -183,7 +183,7 @@ class _SignupViewState extends State<SignupView> {
                 changeState: onChangeAdressDefined,
               ),
               SizedBox(
-                height: sizeConf.width(20),
+                height: sizeConf.width(0),
               ),
               // BirthInputForm(
               //   text: 'Date of Birth',
@@ -230,7 +230,6 @@ class _SignupViewState extends State<SignupView> {
                 },
               ),
               const Expanded(
-                flex: 1,
                 child: SizedBox(
                     // height: sizeConf.width(300),
                     ),
@@ -287,59 +286,57 @@ class _SignupViewState extends State<SignupView> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(
-                      child: Flexible(
-                        child: RichText(
-                          maxLines: 10,
-                          text: TextSpan(
-                            text: 'By signing up, you agree to the ',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: sizeConf.width(13),
-                            ),
-                            children: const [
-                              TextSpan(
-                                text: 'Terms of Service',
-                                style: TextStyle(
-                                  color: Color(0xff0bacf4),
-                                ),
-                              ),
-                              TextSpan(text: ' and '),
-                              TextSpan(
-                                text: 'Privacy Policy',
-                                style: TextStyle(
-                                  color: Color(0xff0bacf4),
-                                ),
-                              ),
-                              TextSpan(text: ', inculing '),
-                              TextSpan(text: 'and '),
-                              TextSpan(
-                                text: 'Cookie Use.',
-                                style: TextStyle(
-                                  color: Color(0xff0bacf4),
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads.',
-                              ),
-                              TextSpan(
-                                text: 'Learn more',
-                                style: TextStyle(
-                                  color: Color(0xff0bacf4),
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    'Others will be able to find you by email or phone number, when provided, unless you choose otherwise ',
-                              ),
-                              TextSpan(
-                                text: 'here',
-                                style: TextStyle(
-                                  color: Color(0xff0bacf4),
-                                ),
-                              ),
-                            ],
+                      child: RichText(
+                        maxLines: 10,
+                        text: TextSpan(
+                          text: 'By signing up, you agree to the ',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: sizeConf.width(13),
                           ),
+                          children: const [
+                            TextSpan(
+                              text: 'Terms of Service',
+                              style: TextStyle(
+                                color: Color(0xff0bacf4),
+                              ),
+                            ),
+                            TextSpan(text: ' and '),
+                            TextSpan(
+                              text: 'Privacy Policy',
+                              style: TextStyle(
+                                color: Color(0xff0bacf4),
+                              ),
+                            ),
+                            TextSpan(text: ', inculing '),
+                            TextSpan(text: 'and '),
+                            TextSpan(
+                              text: 'Cookie Use.',
+                              style: TextStyle(
+                                color: Color(0xff0bacf4),
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  'Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads.',
+                            ),
+                            TextSpan(
+                              text: 'Learn more',
+                              style: TextStyle(
+                                color: Color(0xff0bacf4),
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  'Others will be able to find you by email or phone number, when provided, unless you choose otherwise ',
+                            ),
+                            TextSpan(
+                              text: 'here',
+                              style: TextStyle(
+                                color: Color(0xff0bacf4),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
