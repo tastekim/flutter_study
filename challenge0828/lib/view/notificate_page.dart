@@ -28,7 +28,7 @@ class _NotificatePageState extends State<NotificatePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Search',
+              'Activity',
               style: TextStyle(
                 fontSize: size.width(24),
                 fontWeight: FontWeight.w700,
@@ -72,7 +72,7 @@ class _NotificatePageState extends State<NotificatePage> {
                             },
                             separatorBuilder: (context, index) {
                               return SizedBox(
-                                width: size.width(3),
+                                width: size.width(5),
                               );
                             },
                           ),
@@ -199,4 +199,3 @@ class _NotificatePageState extends State<NotificatePage> {
     );
   }
 }
-
