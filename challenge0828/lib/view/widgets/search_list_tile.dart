@@ -1,4 +1,5 @@
 import 'package:challenge0828/util/size.dart';
+import 'package:challenge0828/util/theme_mode.dart';
 import 'package:flutter/material.dart';
 
 class SearchListTile extends StatelessWidget {
@@ -16,6 +17,8 @@ class SearchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
+
     return ListTile(
       titleAlignment: ListTileTitleAlignment.top,
       contentPadding: EdgeInsets.zero,
@@ -31,7 +34,7 @@ class SearchListTile extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.black,
+          color: mode.fontSwitch(),
           fontSize: size.width(14),
         ),
       ),
@@ -51,7 +54,7 @@ class SearchListTile extends StatelessWidget {
           Text(
             '${followers}K followers',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.grey,
               fontSize: size.width(14),
             ),
           ),

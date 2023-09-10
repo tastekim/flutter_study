@@ -1,4 +1,5 @@
 import 'package:challenge0828/util/size.dart';
+import 'package:challenge0828/util/theme_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -12,7 +13,10 @@ class PostWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
+
     return Container(
+      color: mode.bgSwitch(),
       constraints: BoxConstraints(
         maxWidth: size.width(350),
         maxHeight: size.width(318),
@@ -49,14 +53,14 @@ class PostWidget extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: size.width(11),
-                                backgroundColor: Colors.white,
+                                backgroundColor: mode.bgSwitch(),
                               ),
                               CircleAvatar(
                                 radius: size.width(8),
-                                backgroundColor: Colors.black,
+                                backgroundColor: mode.fontSwitch(),
                                 child: Icon(
                                   Icons.add,
-                                  color: Colors.white,
+                                  color: mode.bgSwitch(),
                                   size: size.width(14),
                                 ),
                               ),
@@ -128,7 +132,7 @@ class PostWidget extends StatelessWidget {
                           Text(
                             'pubity',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: mode.fontSwitch(),
                               fontSize: size.width(14),
                               fontWeight: FontWeight.w600,
                             ),
@@ -139,6 +143,7 @@ class PostWidget extends StatelessWidget {
                           FaIcon(
                             FontAwesomeIcons.circleCheck,
                             size: size.width(12),
+                            color: mode.fontSwitch(),
                           )
                         ],
                       ),
@@ -154,7 +159,10 @@ class PostWidget extends StatelessWidget {
                           SizedBox(
                             width: size.width(8),
                           ),
-                          const Icon(Icons.more_horiz),
+                          Icon(
+                            Icons.more_horiz,
+                            color: mode.fontSwitch(),
+                          ),
                         ],
                       ),
                     ],
@@ -172,7 +180,7 @@ class PostWidget extends StatelessWidget {
                           text: TextSpan(
                             text: 'Drop a comment here to test things out.',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: mode.fontSwitch(),
                               fontSize: size.width(14),
                             ),
                           ),
@@ -213,19 +221,31 @@ class PostWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const FaIcon(FontAwesomeIcons.heart),
+                      FaIcon(
+                        FontAwesomeIcons.heart,
+                        color: mode.fontSwitch(),
+                      ),
                       SizedBox(
                         width: size.width(12),
                       ),
-                      const FaIcon(FontAwesomeIcons.comment),
+                      FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: mode.fontSwitch(),
+                      ),
                       SizedBox(
                         width: size.width(12),
                       ),
-                      const FaIcon(FontAwesomeIcons.retweet),
+                      FaIcon(
+                        FontAwesomeIcons.retweet,
+                        color: mode.fontSwitch(),
+                      ),
                       SizedBox(
                         width: size.width(12),
                       ),
-                      const FaIcon(FontAwesomeIcons.featherPointed),
+                      FaIcon(
+                        FontAwesomeIcons.featherPointed,
+                        color: mode.fontSwitch(),
+                      ),
                     ],
                   ),
                   SizedBox(

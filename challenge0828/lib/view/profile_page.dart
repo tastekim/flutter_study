@@ -1,4 +1,5 @@
 import 'package:challenge0828/util/size.dart';
+import 'package:challenge0828/util/theme_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,8 +20,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig size = SizeConfig(context);
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
 
     return Scaffold(
+      backgroundColor: mode.bgSwitch(),
       key: scaffoldKey,
       endDrawer: Drawer(
         width: MediaQuery.of(context).size.width,
@@ -28,6 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
       drawerEnableOpenDragGesture: false,
       endDrawerEnableOpenDragGesture: false,
       appBar: AppBar(
+        backgroundColor: mode.bgSwitch(),
         automaticallyImplyLeading: false,
         centerTitle: true,
         leading: Padding(
@@ -35,6 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: FaIcon(
             FontAwesomeIcons.earth,
             size: size.width(24),
+            color: mode.fontSwitch(),
           ),
         ),
         actions: [
@@ -43,6 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: FaIcon(
               FontAwesomeIcons.instagram,
               size: size.width(24),
+              color: mode.fontSwitch(),
             ),
           ),
           Padding(
@@ -54,6 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: FaIcon(
                 FontAwesomeIcons.bars,
                 size: size.width(24),
+                color: mode.fontSwitch(),
               ),
             ),
           ),
@@ -68,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
               toolbarHeight: size.width(100),
               expandedHeight: size.width(200),
               pinned: true,
-              backgroundColor: Colors.white,
+              backgroundColor: mode.bgSwitch(),
               flexibleSpace: Padding(
                 padding: EdgeInsets.only(
                   top: size.width(70),
@@ -136,9 +143,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   width: size.width(10),
                                 ),
                                 Container(
+                                  alignment: Alignment.center,
                                   padding: EdgeInsets.symmetric(
                                     vertical: size.width(5),
-                                    horizontal: size.width(5),
+                                    horizontal: size.width(10),
                                   ),
                                   decoration: BoxDecoration(
                                     color: Colors.blueGrey[50],
@@ -162,7 +170,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const SliverPersistentHeader(
-                pinned: true, delegate: TabBarDelegate()),
+              pinned: true,
+              delegate: TabBarDelegate(),
+            ),
             SliverFillRemaining(
               // 탭바 뷰 내부에는 스크롤이 되는 위젯이 들어옴.
               hasScrollBody: true,
@@ -190,25 +200,33 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
+
     return Container(
-      color: Colors.white,
+      color: mode.bgSwitch(),
       child: TabBar(
         tabs: [
           Tab(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              color: Colors.white,
-              child: const Text(
+              color: mode.bgSwitch(),
+              child: Text(
                 "Threads",
+                style: TextStyle(
+                  color: mode.fontSwitch(),
+                ),
               ),
             ),
           ),
           Tab(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              color: Colors.white,
-              child: const Text(
+              color: mode.bgSwitch(),
+              child: Text(
                 "Replies",
+                style: TextStyle(
+                  color: mode.fontSwitch(),
+                ),
               ),
             ),
           ),
@@ -217,7 +235,7 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         unselectedLabelColor: Colors.grey,
         labelColor: Colors.black,
-        indicatorColor: Colors.black,
+        indicatorColor: mode.fontSwitch(),
         indicatorSize: TabBarIndicatorSize.label,
       ),
     );

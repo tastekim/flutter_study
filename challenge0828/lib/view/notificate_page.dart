@@ -1,4 +1,5 @@
 import 'package:challenge0828/util/size.dart';
+import 'package:challenge0828/util/theme_mode.dart';
 import 'package:challenge0828/view/widgets/notificate_tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,6 +18,8 @@ class _NotificatePageState extends State<NotificatePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig size = SizeConfig(context);
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
+
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.only(
@@ -120,15 +123,15 @@ class _NotificatePageState extends State<NotificatePage> {
                                 children: [
                                   CircleAvatar(
                                     radius: size.width(11),
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: mode.bgSwitch(),
                                   ),
                                   CircleAvatar(
                                     radius: size.width(8),
-                                    backgroundColor: Colors.black,
+                                    backgroundColor: mode.fontSwitch(),
                                     child: Center(
                                       child: FaIcon(
                                         FontAwesomeIcons.instagram,
-                                        color: Colors.white,
+                                        color: mode.bgSwitch(),
                                         size: size.width(12),
                                       ),
                                     ),
@@ -144,7 +147,7 @@ class _NotificatePageState extends State<NotificatePage> {
                           Text(
                             'john_mobbin',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: mode.fontSwitch(),
                               fontSize: size.width(14),
                             ),
                           ),
@@ -175,7 +178,7 @@ class _NotificatePageState extends State<NotificatePage> {
                           Text(
                             'Heres a thread you should follow if you love botany @jane_mobbin',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: mode.fontSwitch(),
                               fontSize: size.width(14),
                             ),
                           ),

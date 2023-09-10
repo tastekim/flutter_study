@@ -1,4 +1,5 @@
 import 'package:challenge0828/util/size.dart';
+import 'package:challenge0828/util/theme_mode.dart';
 import 'package:challenge0828/view/widgets/search_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,9 @@ class _SearchPageState extends State<SearchPage> {
   final ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
     SizeConfig size = SizeConfig(context);
+    
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.only(

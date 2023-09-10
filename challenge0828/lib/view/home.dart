@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:challenge0828/util/size.dart';
+import 'package:challenge0828/util/theme_mode.dart';
 import 'package:challenge0828/view/notificate_page.dart';
 import 'package:challenge0828/view/post_page.dart';
 import 'package:challenge0828/view/profile_page.dart';
@@ -102,6 +103,7 @@ class _HomeState extends State<Home> {
 
   /// 게시글 작성 바텀시트
   void onBottomSheet() {
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
     showModalBottomSheet(
       isScrollControlled: true,
       useSafeArea: true,
@@ -110,8 +112,10 @@ class _HomeState extends State<Home> {
         SizeConfig size = SizeConfig(context);
 
         return Scaffold(
+          backgroundColor: mode.bgSwitch(),
           extendBody: true,
           appBar: AppBar(
+            backgroundColor: mode.bgSwitch(),
             toolbarHeight: size.width(50),
             leadingWidth: size.width(80),
             bottom: PreferredSize(
@@ -131,6 +135,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(
                     fontSize: size.width(14),
                     fontWeight: FontWeight.w600,
+                    color: mode.fontSwitch(),
                   ),
                 ),
               ),
@@ -140,6 +145,7 @@ class _HomeState extends State<Home> {
               style: TextStyle(
                 fontSize: size.width(17),
                 fontWeight: FontWeight.bold,
+                color: mode.fontSwitch(),
               ),
             ),
           ),
@@ -212,7 +218,7 @@ class _HomeState extends State<Home> {
                                           Text(
                                             'pubity',
                                             style: TextStyle(
-                                              color: Colors.black,
+                                              color: mode.fontSwitch(),
                                               fontSize: size.width(14),
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -222,12 +228,18 @@ class _HomeState extends State<Home> {
                                           ),
                                           FaIcon(
                                             FontAwesomeIcons.circleCheck,
+                                            color: mode
+                                                .fontSwitch(),
                                             size: size.width(12),
                                           )
                                         ],
                                       ),
                                       SizedBox(
                                         child: TextFormField(
+                                          style: TextStyle(
+                                            color: mode
+                                                .fontSwitch(),
+                                          ),
                                           controller: _textEditingController,
                                           focusNode: _focusNode,
                                           onTapOutside: (event) {
@@ -326,14 +338,18 @@ class _HomeState extends State<Home> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: mode.bgSwitch(),
                     ),
                     padding: EdgeInsets.all(size.width(10)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('Anyone can reply'),
+                        Text(
+                          'Anyone can reply',
+                          style: TextStyle(
+                              color: mode.fontSwitch()),
+                        ),
                         Text(
                           'Post',
                           style: TextStyle(
@@ -359,14 +375,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     SizeConfig size = SizeConfig(context);
-    double maxWidth = MediaQuery.of(context).size.width;
-    double maxHeight = MediaQuery.of(context).size.height;
+    ChangeThemeMode mode = ChangeThemeMode(ctx: Theme.of(context));
 
     return DefaultTabController(
       initialIndex: 0,
       length: 5,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: mode.bgSwitch(),
         body: TabBarView(
           children: [
             PostPage(size: size),
@@ -397,27 +412,27 @@ class _HomeState extends State<Home> {
           tabs: [
             FaIcon(
               FontAwesomeIcons.house,
-              color: currentPage == 0 ? Colors.black : Colors.grey,
+              color: currentPage == 0 ? mode.fontSwitch() : Colors.grey,
               size: size.width(26),
             ),
             FaIcon(
               FontAwesomeIcons.magnifyingGlass,
-              color: currentPage == 1 ? Colors.black : Colors.grey,
+              color: currentPage == 1 ? mode.fontSwitch() : Colors.grey,
               size: size.width(26),
             ),
             FaIcon(
               FontAwesomeIcons.instagram,
-              color: currentPage == 2 ? Colors.black : Colors.grey,
+              color: currentPage == 2 ? mode.fontSwitch() : Colors.grey,
               size: size.width(26),
             ),
             FaIcon(
               FontAwesomeIcons.heart,
-              color: currentPage == 3 ? Colors.black : Colors.grey,
+              color: currentPage == 3 ? mode.fontSwitch() : Colors.grey,
               size: size.width(26),
             ),
             FaIcon(
               FontAwesomeIcons.user,
-              color: currentPage == 4 ? Colors.black : Colors.grey,
+              color: currentPage == 4 ? mode.fontSwitch() : Colors.grey,
               size: size.width(26),
             ),
           ],
