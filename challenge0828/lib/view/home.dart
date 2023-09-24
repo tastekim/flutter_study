@@ -228,8 +228,7 @@ class _HomeState extends State<Home> {
                                           ),
                                           FaIcon(
                                             FontAwesomeIcons.circleCheck,
-                                            color: mode
-                                                .fontSwitch(),
+                                            color: mode.fontSwitch(),
                                             size: size.width(12),
                                           )
                                         ],
@@ -237,8 +236,7 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                         child: TextFormField(
                                           style: TextStyle(
-                                            color: mode
-                                                .fontSwitch(),
+                                            color: mode.fontSwitch(),
                                           ),
                                           controller: _textEditingController,
                                           focusNode: _focusNode,
@@ -347,8 +345,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Text(
                           'Anyone can reply',
-                          style: TextStyle(
-                              color: mode.fontSwitch()),
+                          style: TextStyle(color: mode.fontSwitch()),
                         ),
                         Text(
                           'Post',
@@ -371,6 +368,8 @@ class _HomeState extends State<Home> {
       setState(() {});
     });
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
